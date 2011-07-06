@@ -1,0 +1,38 @@
+"Games"
+{
+	"pvkii"
+	{
+		"Offsets"
+		{
+			"GiveNamedItem"
+			{
+				"windows"		"352" 
+				"linux"			"353" 
+			}
+			
+			"Weapon_Equip"
+			{
+				"windows"		"230" 
+				"linux"			"231" 
+			}
+
+			"RemoveAllItems"
+			{
+				"windows"		"300" 
+				"linux"			"301" 
+			}
+
+			"GiveAmmo"
+			{
+				"windows"		"224" 
+				"linux"			"225" 
+			}
+                        
+			"SetModel"
+			{
+				"windows"		"24"
+				"linux"			"25"
+			}
+                }
+	}
+}
