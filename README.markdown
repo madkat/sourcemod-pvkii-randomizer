@@ -26,12 +26,12 @@ a server to assign random weapons and classes to players.
 
 # Installation
 
-    Install SourceMod (http://www.sourcemod.net/)
-    Compile Randomizer.sp with the SourceMod Compiler (http://www.sourcemod.net/compiler.php)
-    Place the Randomizer.smx file into your addons/sourcemod/plugins/ directory.
-    Place the randomizer.cfg.txt file into your addons/sourcemod/gamedata/ directory.
-    Restart your srcds or change levels.
-    All done! Enjoy.
+ * Install SourceMod (http://www.sourcemod.net/)
+ * Compile Randomizer.sp with the SourceMod Compiler (http://www.sourcemod.net/compiler.php)
+ * Place the Randomizer.smx file into your addons/sourcemod/plugins/ directory.
+ * Place the randomizer.cfg.txt file into your addons/sourcemod/gamedata/ directory.
+ * Restart your srcds or change levels.
+ * All done! Enjoy.
 
 # Binaries
 
