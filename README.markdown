@@ -35,10 +35,10 @@ a server to assign random weapons and classes to players.
 
 # Binaries
 
-   Compiled version of Randomizer.sp available:
+Compiled version of Randomizer.sp available:
 
-    * http://www.katserv.net/pvkii/Randomizer.smx
-    * http://files.scomplicated.net/pvkii/Randomizer.smx
+ * http://www.katserv.net/pvkii/Randomizer.smx
+ * http://files.scomplicated.net/pvkii/Randomizer.smx
 
 # License
 
