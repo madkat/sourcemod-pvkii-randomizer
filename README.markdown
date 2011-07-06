@@ -15,31 +15,40 @@ a server to assign random weapons and classes to players.
 A value in parenthesis denotes the default value.
 
 Enable or disable PVKII Randomizer
- * rnd_enabled (1)
+
+    rnd_enabled (1)
 
 Enable or disable random class support
- * rnd_classes (1)
+
+    rnd_classes (1)
 
 Enable or disable random weapon support
- * rnd_weapons (1)
+
+    rnd_weapons (1)
 
 The percentage chance that a player will spawn with a second melee weapon
- * rnd_multi_melee (70)
+
+    rnd_multi_melee (70)
 
 The percentage chance that a player will spawn with a ranged weapon
- * rnd_ranged (95)
+
+    rnd_ranged (95)
 
 The percentage chance that a player will spawn with a second ranged weapon
- * rnd_multi_ranged (40)
+
+    rnd_multi_ranged (40)
 
 The percentage chance that a player will spawn with a "special" weapon (keg/parrot).
- * rnd_special (30)
+
+    rnd_special (30)
 
 Enable or disable Hail Mary mode (all players spawn with kegs)
- * rnd_hail_mary (0)
+
+    rnd_hail_mary (0)
 
 Enable or disable Blot Out the Sun mode (all players spawn with parrots)
- * rnd_blotoutthesun (0)
+
+    rnd_blotoutthesun (0)
 
 # Installation
 
