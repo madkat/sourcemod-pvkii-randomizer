@@ -11,7 +11,7 @@ public Plugin:myinfo = {
     author      = "MadKat",
     description = "Gives players random weapons and/or classes.",
     version     = PL_VERSION,
-    url         = "http://www.katserv.net"
+    url         = "http://www.github.com/madkat"
 }
 
 // GiveNamedItem(string classname, int subtype)
@@ -378,6 +378,9 @@ public RandomizeWeapons(client) {
     if (cvar_debug) { PrintToServer("RND: Client %d exiting RandomizeWeapons", client); }
 }
 
+/**
+ * Remove all weapons from a client.
+ */
 public RemoveWeapons(client)
 {
     if (cvar_debug) { PrintToServer("RND: Client %d entering RemoveWeapons", client); }
@@ -391,6 +394,10 @@ public RemoveWeapons(client)
     if (cvar_debug) { PrintToServer("RND: Client %d exiting RemoveWeapons", client); }
 }
 
+/**
+ * RandomizeWeapons should have already been called for this
+ * client. Now to actually assign the weapons to the client.
+ */
 public GiveWeapons(client)
 {
     if (cvar_debug) { PrintToServer("RND: Client %d entering GiveWeapons", client); }
@@ -488,6 +495,8 @@ public player_spawn(Handle:event, const String:name[], bool:dontBroadcast) {
         GiveWeapons(client);
     }
 
+    // For debugging class randomization. Spit out player spawn data
+    // to the server
     if (cvar_debug) {
 	decl String:client_name[MAX_NAME_LENGTH];
 	decl String:client_model[64];
