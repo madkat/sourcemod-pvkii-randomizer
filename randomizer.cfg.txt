@@ -6,32 +6,37 @@
 		{
 			"GiveNamedItem"
 			{
-				"windows"	"404"
-				"linux"		"405"
+				"windows"	"406"
+				"linux"		"407"
+				"mac"		"407"
 			}
 			
 			"Weapon_Equip"
 			{
-				"windows"	"264"
-				"linux"		"265"
+				"windows"	"266"
+				"linux"		"267"
+				"mac"		"267"
 			}
 
 			"RemoveAllItems"
 			{
-				"windows"	"346" 
-				"linux"		"347" 
+				"windows"	"348" 
+				"linux"		"349"
+				"mac"		"349"
 			}
 
 			"GiveAmmo"
 			{
-				"windows"	"255"
-				"linux"		"256"
+				"windows"	"257"
+				"linux"		"258"
+				"mac"		"258"
 			}
 			
 			"SetModel"
 			{
-				"windows"	"25"
-				"linux"		"26"
+				"windows"	"27"
+				"linux"		"28"
+				"mac"		"28"
 			}
 		}
 	}
