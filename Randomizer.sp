@@ -3,7 +3,7 @@
 #include <sourcemod>
 #include <sdktools>
 
-#define PL_VERSION "1.03"
+#define PL_VERSION "1.04"
 #define SERVER_TAG "random"
 
 public Plugin:myinfo = {
@@ -55,7 +55,7 @@ new cvar_blotoutthesun;
 #define C_HEALTH	1
 #define C_ARMOR		2
 
-static const String:weapon_names[25][W_STRING_LEN] = {
+static const String:weapon_names[28][W_STRING_LEN] = {
 	// Melee
 	"weapon_archersword",
 	"weapon_axesword",
@@ -71,6 +71,7 @@ static const String:weapon_names[25][W_STRING_LEN] = {
 	"weapon_dagger",
 	"weapon_halberd",
 	"weapon_maceshield",
+	"weapon_seax",
 	
 	// Ranged
 	"weapon_blunderbuss",
@@ -82,87 +83,98 @@ static const String:weapon_names[25][W_STRING_LEN] = {
 	"weapon_ssflintlock",
 	"weapon_ssrifle",
 	"weapon_crossbow2",
+	"weapon_atlatl",
+	"weapon_flatbow",
 	
 	// Special
 	"weapon_powderkeg",
 	"weapon_parrot"
 };
 
-static const weapon_properties[25][5] = {
-	{ W_MELEE	, 1 , 0 , -1 },
-	{ W_MELEE	, 2 , 1 , -1 },
-	{ W_MELEE	, 1 , 1 , -1 },
-	{ W_MELEE	, 1 , 1 , -1 },
-	{ W_MELEE	, 1 , 0 , -1 },
-	{ W_MELEE	, 2 , 0 , -1 },
-	{ W_MELEE	, 1 , 1 , -1 },
-	{ W_MELEE	, 2 , 0 , -1 },
-	{ W_MELEE	, 1 , 0 , -1 },
-	{ W_MELEE	, 1 , 1 , -1 },
-	{ W_MELEE	, 2 , 1 , -1 },
-	{ W_MELEE	, 1 , 0 , -1 },
-	{ W_MELEE	, 1 , 1 , -1 },
-	{ W_MELEE	, 2 , 0 , -1 },
-	{ W_RANGED	, 2 , 1 , 4  },
-	{ W_RANGED	, 2 , 0 , 0  },
-	{ W_RANGED	, 2 , 0 , 5  },
-	{ W_RANGED	, 3 , 1 , 20 },
-	{ W_RANGED	, 3 , 0 , 2  },
-	{ W_RANGED	, 3 , 0 , 4  },
-	{ W_RANGED	, 2 , 0 , 15  },
-	{ W_RANGED	, 3 , 1 , 5  },
-	{ W_RANGED	, 3 , 0 , 2  },
-	{ W_SPECIAL, 3 , 0 , -1  },
-	{ W_SPECIAL, 3 , 0 , 1  }
+static const weapon_properties[28][5] = {
+	{ W_MELEE	, 1 , 0 , -1 }, // weapon_archersword
+	{ W_MELEE	, 2 , 1 , -1 }, // weapon_axesword
+	{ W_MELEE	, 1 , 1 , -1 }, // weapon_bigaxe
+	{ W_MELEE	, 1 , 1 , -1 }, // weapon_cutlass
+	{ W_MELEE	, 1 , 0 , -1 }, // weapon_cutlass2
+	{ W_MELEE	, 2 , 0 , -1 }, // weapon_seaxshield
+	{ W_MELEE	, 1 , 1 , -1 }, // weapon_spear
+	{ W_MELEE	, 2 , 0 , -1 }, // weapon_swordshield
+	{ W_MELEE	, 1 , 0 , -1 }, // weapon_twoaxe
+	{ W_MELEE	, 1 , 1 , -1 }, // weapon_twosword
+	{ W_MELEE	, 2 , 1 , -1 }, // weapon_vikingshield
+	{ W_MELEE	, 1 , 1 , -1 }, // weapon_dagger
+	{ W_MELEE	, 1 , 1 , -1 }, // weapon_halberd
+	{ W_MELEE	, 2 , 1 , -1 }, // weapon_maceshield
+	{ W_MELEE	, 1 , 0 , -1 }, // weapon_seax
+	
+	{ W_RANGED	, 2 , 1 , 4  }, // weapon_blunderbuss
+	{ W_RANGED	, 2 , 0 , 0  }, // weapon_flintlock
+	{ W_RANGED	, 2 , 0 , 5  }, // weapon_crossbow
+	{ W_RANGED	, 3 , 1 , 20 }, // weapon_longbow
+	{ W_RANGED	, 3 , 0 , 2  }, // weapon_javelin
+	{ W_RANGED	, 3 , 0 , 4  }, // weapon_throwaxe
+	{ W_RANGED	, 2 , 1 , 15  }, //weapon_ssflintlock
+	{ W_RANGED	, 3 , 1 , 5  }, // weapon_ssrifle
+	{ W_RANGED	, 3 , 1 , 2  }, // weapon_crossbow2
+	{ W_RANGED	, 2 , 0 , 2  }, // weapon_atlatl
+	{ W_RANGED	, 3 , 1 , 15  }, // weapon_flatbow
+	
+	{ W_SPECIAL, 3 , 0 , -1  }, // weapon_powderkeg
+	{ W_SPECIAL, 3 , 0 , 1  } // weapon_parrot
 };
 
-static const melee_count = 14;
-static const ranged_count = 9;
+static const melee_count = 15;
+static const ranged_count = 11;
 static const special_count = 2;
 
-static const String:class_models[9][43] = {
+static const String:class_models[10][43] = {
 	"models/player/skirmisher/skirmisher.mdl",
 	"models/player/captain/captain.mdl",
 	"models/player/sharpshooter/sharpshooter.mdl",
 	"models/player/berserker/berserker.mdl",
 	"models/player/huscarl/huscarl.mdl",
 	"models/player/gestir/gestir.mdl",
+	"models/player/bondi/bondi.mdl",
 	"models/player/heavyknight/heavyknight.mdl",
 	"models/player/bowman/bowman.mdl",
 	"models/player/manatarms/manatarms.mdl"
 };
 /* not used?
-static const String:class_names[9][13] = {
+static const String:class_names[10][13] = {
 	"Skrimisher",
 	"Captain",
 	"Sharpshooter",
 	"Berserker",
 	"Huscarl",
 	"Gestir",
+	"Bondi",
 	"Heavy Knight",
 	"Archer",
 	"Man-at-Arms"
 };
 */
-static const class_properties[9][3] = {
+static const class_properties[10][3] = {
 	{ 2 , 100 , 90  }, // Skirmisher
 	{ 2 , 125 , 160 }, // Captain
 	{ 2 , 100 , 80   }, // Sharpshooter
 	{ 3 , 155 , 100 }, // Berserker
 	{ 3 , 130 , 170 }, // Huscarl
 	{ 3 , 115 , 120 }, // Gestir
+	{ 3, 110, 90, }, // Bondi
 	{ 4 , 125 , 215 }, // Heavy Knight
 	{ 4 , 100 , 80  }, // Archer
 	{ 4 , 105 , 130  } // Man-at-Arms
 };
 
-static const Float:class_speeds[9] = {
+static const Float:class_speeds[10] = {
 	260.0, // Skirmisher
 	210.0, // Captain
 	210.0, // Sharpshooter
 	235.0, // Berserker
 	200.0, // Huscarl
 	210.0, // Gestir
+	210.0, // Bondi
 	190.0, // Heavy Knight
 	210.0, // Archer
 	225.0 // Man-at-Arms
