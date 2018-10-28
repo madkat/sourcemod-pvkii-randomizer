@@ -118,7 +118,7 @@ static const weapon_properties[28][5] = {
 	{ W_RANGED	, 3 , 1 , 5  }, // weapon_ssrifle
 	{ W_RANGED	, 3 , 1 , 2  }, // weapon_crossbow2
 	{ W_RANGED	, 2 , 0 , 2  }, // weapon_atlatl
-	{ W_RANGED	, 3 , 1 , 15  }, // weapon_flatbow
+	{ W_RANGED	, 3 , 1 , 20  }, // weapon_flatbow
 	
 	{ W_SPECIAL, 3 , 0 , -1  }, // weapon_powderkeg
 	{ W_SPECIAL, 3 , 0 , 1  } // weapon_parrot
